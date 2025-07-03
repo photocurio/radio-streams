@@ -1,0 +1,32 @@
+name: Update KBCS Stream
+
+on:
+  schedule:
+    - cron: '0 10 * * 3'  # Every Wednesday at 10:00 UTC
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install playwright
+
+      - name: Run scraper
+        run: node scraper.js
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add kbcs.m3u
+          git commit -m "Update stream URL"
+          git push

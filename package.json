@@ -1,0 +1,17 @@
+{
+	"name": "radio-streams",
+	"version": "1.0.0",
+	"description": "Scrape the latest radio stream and output a .m3u file",
+	"main": "scraper.js",
+	"scripts": {
+		"start": "node scraper.js"
+	},
+	"dependencies": {
+		"playwright": "^1.44.0"
+	},
+	"engines": {
+		"node": ">=18"
+	},
+	"author": "Peter Mumford",
+	"license": "MIT"
+}
