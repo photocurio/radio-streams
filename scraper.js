@@ -32,9 +32,9 @@ const fs = require( 'fs' );
 		const streamUrl = `https://ark3.spinitron.com/ark2/KBCS-${timestamp}/index.m3u8`
 		console.log( '🎧 Constructed stream URL:', streamUrl )
 
-		const m3u = `#EXTM3U\n#EXTINF:-1,KBCS Road Songs\n${streamUrl}`
-		fs.writeFileSync( 'kbcs.m3u', m3u )
-		console.log( '✅ Saved kbcs.m3u' )
+		const m3u8 = `#EXTM3U\n#EXTINF:-1,KBCS Road Songs\n${streamUrl}`
+		fs.writeFileSync( 'kbcs.m3u8', m3u8 )
+		console.log( '✅ Saved kbcs.m3u8' )
 	} else {
 		console.error( '❌ Could not find data-ark-start attribute.' )
 		process.exit( 1 )
