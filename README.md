@@ -11,5 +11,4 @@ This project automatically updates an `.m3u` playlist file with the latest strea
 
 ## 🔗 Public Stream Link
 
-If GitHub Pages is enabled, there will be a permanent stream link at:
-[Road Songs stream](https://photocurio.github.io/radio-streams/kbcs.m3u8)
+If GitHub Pages is enabled, there will be a permanent stream link at: [Road Songs stream](https://photocurio.github.io/radio-streams/kbcs.m3u8)
