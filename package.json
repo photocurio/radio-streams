@@ -1,17 +1,9 @@
 {
 	"name": "radio-streams",
 	"version": "1.0.0",
-	"description": "Scrape the latest radio stream and output a .m3u file",
-	"main": "scraper.js",
+	"description": "Scrape the latest radio stream and output a .m3u8 url",
 	"scripts": {
-		"scrape": "node scraper.js",
-		"start": "serve ."
-	},
-	"dependencies": {
-		"playwright": "^1.44.0",
-	},
-	"devDependencies": {
-		"serve": "^14.2.4"
+		"scrape": "node scraper-lite.js"
 	},
 	"engines": {
 		"node": ">=18"
