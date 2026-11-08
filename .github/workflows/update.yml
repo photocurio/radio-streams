@@ -1,15 +1,15 @@
-name: Update KBCS Stream
+name: Weekly KBCS Scraper
 
 on:
   schedule:
-    - cron: '0 10 * * 3'  # Every Wednesday at 10:00 UTC
+    - cron: '0 10 * * 3'   # Every Wednesday at 4:00 UTC
   workflow_dispatch:
 
 jobs:
   update:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout repo
         uses: actions/checkout@v3
 
       - name: Setup Node.js
@@ -17,16 +17,13 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install dependencies
-        run: npm install playwright
+      - name: Run scraper-lite.js
+        run: node scraper-lite.js
 
-      - name: Run scraper
-        run: node scraper.js
-
-      - name: Commit and push
+      - name: Commit and push changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add kbcs.m3u8
-          git commit -m "Update stream URL"
+          git add kbcs.m3u8 latest-url.txt
+          git commit -m "Update KBCS stream URL [bot]" || echo "No changes to commit"
           git push

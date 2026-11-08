@@ -1,7 +1,6 @@
 #!/bin/bash
-
-WIIM_IP="192.168.4.206"
-ISETTA_IP="192.168.4.204"
+WIIM_IP="192.168.4.41"
+ISETTA_IP="192.168.4.43"
 STREAM_URL=$(cat latest-url.txt)
 ENCODED_URL=$(python3 -c "import urllib.parse,sys; print(urllib.parse.quote(sys.argv[1], safe=''))" "$STREAM_URL")
 
