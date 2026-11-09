@@ -16,18 +16,26 @@ already have:
 ~/Documents/Music/Radio/
   Road Songs/
     cover.jpg                    show artwork, saved once
+    Road Songs.m3u               every episode, newest first
     2026-11-03 Road Songs.m4a    the 2-hour episode
     2026-11-03 Road Songs.json   its playlist
 ```
 
+In Lyrion, each show appears in two ways:
+
+- **Playlists → Road Songs:** every episode, newest first. This is the one to favorite. The script
+  rewrites it on every run from whatever `.m4a` files are in the folder.
+- **Albums → Road Songs:** the same episodes as tracks titled by date, oldest first. Lyrion always
+  sorts album tracks this way.
+
 - The audio is copied from the archive stream without re-encoding, and cut at the end of the
   show's time slot. The archive itself keeps running into the following programs.
-- Each `.m4a` is tagged: album `Road Songs – 2026-11-03`, artist and album artist `KBCS Road Songs`,
-  genre `Radio`, comment with the DJ. The playlist is also stored in the **lyrics** tag, so a
+- Each `.m4a` is tagged: title `2026-11-03`, album `Road Songs`, artist and album artist
+  `KBCS Road Songs`, genre `Radio`, comment with the DJ. The playlist is also stored in the **lyrics** tag, so a
   player that shows lyrics can display it.
 - The `.json` holds the station, show, date, DJ, time slot, archive and playlist URLs, and each
   song's logged time, artist, title, album and label.
-- **To drop an episode,** delete its `.m4a` and `.json`. Spinitron only keeps about two weeks of
+- **To drop an episode,** delete its `.m4a` and `.json`. It leaves the playlist on the next run. Spinitron only keeps about two weeks of
   archives, so it won't be downloaded again once it has aged out.
 
 ```bash
