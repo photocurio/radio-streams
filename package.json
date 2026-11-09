@@ -1,9 +1,10 @@
 {
 	"name": "radio-streams",
 	"version": "1.0.0",
-	"description": "Scrape the latest radio stream and output a .m3u8 url",
+	"description": "Save Spinitron radio show archives for Lyrion",
 	"scripts": {
-		"scrape": "node scraper-lite.js"
+		"download": "node radio-download.js",
+		"download:dry-run": "node radio-download.js --dry-run"
 	},
 	"engines": {
 		"node": ">=18"
