@@ -154,13 +154,22 @@ function episodeSeconds ( slot, spins, startMinutes ) {
 }
 
 /**
- * The playlist as plain text, stored in the file's lyrics tag.
+ * The playlist as time-synced lyrics (LRC), stored in the file's lyrics tag.
+ * Each line starts with the song's position in the episode, e.g. [63:00], so
+ * Material highlights the current song and scrolls with playback. Positions
+ * come from Spinitron's logged times, so they are only accurate to the minute.
+ * Works from the saved .json alone, so existing episodes can be retagged.
  * @param {any} ep
  */
 function playlistText ( ep ) {
 	const head = ep.station + " " + ep.show + " · " + ep.date + ( ep.dj ? " · " + ep.dj : "" )
-	return [ head, "" ].concat( ep.tracks.map( function ( /** @type {any} */ t ) {
-		return t.time.padStart( 8 ) + "  " + t.artist + " – " + t.title
+	const start = ep.start ? clockToMinutes( ep.start ) : ( ep.tracks.length ? clockToMinutes( ep.tracks[0].time ) : 0 )
+	let prev = 0
+	return [ "[0:00]" + head ].concat( ep.tracks.map( function ( /** @type {any} */ t ) {
+		let m = clockToMinutes( t.time ) - start
+		if ( m < -720 ) m += 1440 // show crosses midnight
+		prev = Math.max( prev, m ) // LRC times must never go backwards
+		return "[" + prev + ":00]" + t.time + "  " + t.artist + " – " + t.title
 	} ) ).join( "\n" )
 }
 
@@ -316,7 +325,7 @@ async function processShow ( show, ffmpeg ) {
 	return added
 }
 
-( async function () {
+async function main () {
 	try {
 		/** @type {{name:string, spinitron:string}[]} */
 		const shows = JSON.parse( fs.readFileSync( SHOWS_FILE, "utf8" ) )
@@ -340,4 +349,8 @@ async function processShow ( show, ffmpeg ) {
 		console.error( "Error:", err.message || err )
 		process.exit( 1 )
 	}
-} )()
+}
+
+if ( require.main === module ) main()
+
+module.exports = { playlistText }

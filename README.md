@@ -31,8 +31,10 @@ In Lyrion, each show appears in two ways:
 - The audio is copied from the archive stream without re-encoding, and cut at the end of the
   show's time slot. The archive itself keeps running into the following programs.
 - Each `.m4a` is tagged: title `2026-11-03`, album `Road Songs`, artist and album artist
-  `KBCS Road Songs`, genre `Radio`, comment with the DJ. The playlist is also stored in the **lyrics** tag, so a
-  player that shows lyrics can display it.
+  `KBCS Road Songs`, genre `Radio`, comment with the DJ. The playlist is also stored in the **lyrics** tag as
+  time-synced lyrics (LRC: `[63:00]10:03 PM  Artist – Title`), so Material's track info highlights
+  the current song and scrolls along. Spinitron logs songs to the minute, so the highlight can
+  move up to about a minute before the actual song change.
 - The `.json` holds the station, show, date, DJ, time slot, archive and playlist URLs, and each
   song's logged time, artist, title, album and label.
 - **To drop an episode,** delete its `.m4a` and `.json`. It leaves the playlist on the next run. Spinitron only keeps about two weeks of
